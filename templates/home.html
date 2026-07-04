@@ -1,26 +1,11 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Conditional statement sin Jinja2 based if certain values exist
-     like if else  -->
-    <title>
-      {% if title %} FastAPI Blog - {{ title }} {% else %} FastAPI Blog {% endif
-      %}
-    </title>
-  </head>
-  <body>
-    <h1>Home Page</h1>
-    <!-- This is a simple way to access elements in a for loop
+{% extends "layout.html" %} {% block content %}
+<!-- This is a simple way to access elements in a for loop
      in Jinja2Templates -->
-    {% for post in posts%}
-    <!-- This is a way Jinja2 access the templates using the 
+{% for post in posts%}
+<!-- This is a way Jinja2 access the templates using the 
      "dot" method its classic but handy as it dynamically renders
      data  -->
-    <h2>{{ post.title }}</h2>
-    <p>{{ post.content }}</p>
-    <p>{{ post.author }}</p>
-    {% endfor %}
-  </body>
-</html>
+<h2>{{ post.title }}</h2>
+<p>{{ post.content }}</p>
+<p>{{ post.author }}</p>
+{% endfor %} {% endblock content %}
