@@ -97,30 +97,30 @@ flowchart LR
 ```mermaid
 sequenceDiagram
     actor U as Browser
-    participant F as FastAPI (main.py)
+    participant F as FastAPI main.py
     participant J as Jinja2Templates
-    participant T as home.html / layout.html
+    participant T as home.html and layout.html
 
-    U->>F: GET / (or /posts)
-    F->>J: TemplateResponse("home.html", {posts, title})
-    J->>T: render layout.html -> block content -> home.html
+    U->>F: GET / or GET /posts
+    F->>J: TemplateResponse home.html with posts and title
+    J->>T: render layout.html then content block then home.html
     T-->>J: rendered HTML
     J-->>F: HTML string
     F-->>U: 200 HTML page
 
     U->>F: GET /api/posts
-    F-->>U: 200 JSON (raw posts list)
+    F-->>U: 200 JSON raw posts list
 ```
 
 <h2 style="font-family: 'Sora', sans-serif;">Template inheritance</h2>
 
 ```mermaid
 flowchart TB
-    Layout["layout.html\n<title> uses {% if title %}...{% endif %}\n{% block content %}{% endblock %}"]
-    Home["home.html\n{% extends \"layout.html\" %}\n{% block content %}\n  {% for post in posts %} ... {% endfor %}\n{% endblock %}"]
+    Layout["layout.html: base shell, title if/else, defines content block"]
+    Home["home.html: extends layout.html, fills content block with post loop"]
 
-    Home -- "extends" --> Layout
-    Layout -- "leaves a slot that\nhome.html fills in" --> Home
+    Home -- extends --> Layout
+    Layout -- leaves a slot home.html fills in --> Home
 ```
 
 ---

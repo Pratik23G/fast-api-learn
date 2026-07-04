@@ -19,8 +19,8 @@ variable was passed in at all — not just its value.</p>
 
 ```mermaid
 flowchart TD
-    Start["{% if title %}"] -->|"title truthy\n(passed + non-empty)"| A["FastAPI Blog - {{ title }}"]
-    Start -->|"title falsy\n(missing / empty / None)"| B["FastAPI Blog"]
+    Start[if title check] -->|title truthy: passed and non-empty| A[FastAPI Blog - the title value]
+    Start -->|title falsy: missing, empty, or None| B[FastAPI Blog]
 ```
 
 ## Why this matters for a shared layout

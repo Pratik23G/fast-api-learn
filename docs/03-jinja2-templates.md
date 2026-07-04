@@ -39,10 +39,10 @@ def home(request: Request):
 
 ```mermaid
 flowchart LR
-    Route["route handler"] -->|"context dict\n{posts, title}"| TR["TemplateResponse"]
-    TR --> Engine["Jinja2 engine"]
-    Engine -->|"{% for post in posts %}"| Loop["renders once per post"]
-    Loop --> HTML["final HTML"]
+    Route[route handler] -->|context dict: posts, title| TR[TemplateResponse]
+    TR --> Engine[Jinja2 engine]
+    Engine -->|for post in posts loop| Loop[renders once per post]
+    Loop --> HTML[final HTML]
 ```
 
 <p style="font-family: 'Sora', sans-serif;"><strong>Why it matters:</strong> this is the core
