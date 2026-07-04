@@ -41,18 +41,18 @@ child template to override.
 
 ```mermaid
 flowchart TB
-    subgraph layout.html
-        Head["&lt;head&gt; + &lt;title&gt; (if/else logic)"]
-        Slot["{% block content %}\n(empty placeholder)"]
+    subgraph LayoutFile [layout.html]
+        Head[head and title, if/else logic]
+        Slot[content block: empty placeholder]
     end
 
-    subgraph home.html
-        Extends["{% extends 'layout.html' %}"]
-        Fill["{% block content %}\nfor-loop over posts\n{% endblock %}"]
+    subgraph HomeFile [home.html]
+        Extends[extends layout.html]
+        Fill[content block: for-loop over posts]
     end
 
-    Extends -.->|"inherits shell from"| layout.html
-    Fill ==>|"fills"| Slot
+    Extends -.-> LayoutFile
+    Fill ==> Slot
 ```
 
 ## Why this replaced copy-pasted HTML
